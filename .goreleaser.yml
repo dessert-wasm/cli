@@ -1,0 +1,42 @@
+# Documentation at http://goreleaser.com
+
+project_name: dessert-cli
+
+env:
+  - CGO_ENABLED=0
+
+builds:
+  -
+    binary: dessert-cli
+    id: dessert-cli
+    goos:
+      - darwin
+      - linux
+      #- windows
+    goarch:
+      - 386
+      - amd64
+
+archives:
+  -
+    builds: ['dessert-cli']
+    format: tar.gz
+    #format_overrides:
+    #  - goos: windows
+    #    format: zip
+    replacements:
+      amd64: 64bit
+      386: 32bit
+      darwin: macOS
+      linux: Linux
+      #windows: Windows
+    name_template: "{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}"
+    files:
+      - README.md
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'

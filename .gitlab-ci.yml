@@ -1,0 +1,39 @@
+image: golang:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  # Install our linter
+  # TODO: Cache it
+  #- apk add --update git --no-cache
+  - GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+
+build-dessert-ci:
+  stage: build
+    # Build project, go mod takes care of all the dependencies
+  script:
+    - go build
+
+test-dessert-ci:
+  stage: test
+  script:
+    # Test all packages
+    - go test ./... -v
+
+deploy-dessert-ci:
+  stage: deploy
+  image: golang:alpine
+  services:
+    - docker:dind
+  before_script:
+    - apk add --update git --no-cache
+    - apk add --update curl --no-cache
+    - apk add --update docker-cli --no-cache
+  script:
+    - curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh -s -- -b /bin
+    - /bin/goreleaser # --debug
+  only:
+    - tags
