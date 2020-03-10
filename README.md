@@ -2,6 +2,8 @@
 
 Dessert Command Line Tool (cli), written in Go using cobra and viper.
 
+![GitHub license](https://img.shields.io/github/license/dessert-wasm/cli) ![Go version](https://img.shields.io/github/go-mod/go-version/dessert-wasm/cli)
+
 ![](./res/readme.gif)
 
 **Summary**
