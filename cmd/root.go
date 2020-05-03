@@ -48,5 +48,6 @@ func CreateRoot() *cobra.Command {
 	rootCmd.AddCommand(createInitCmd(sacYML, sacJSON))
 	rootCmd.AddCommand(createPublishCmd(sacYML, sacJSON))
 	rootCmd.AddCommand(createReplacesCmd(sacJSON))
+	rootCmd.AddCommand(createRecommendCmd())
 	return rootCmd
 }
