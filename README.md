@@ -20,7 +20,7 @@ Dessert Command Line Tool (cli), written in Go using cobra and viper.
 
 Download the `dessert-cli` binary from our GitHub releases.
 
-Add the binary to `/usr/local/bin`.
+Add the binary to `/usr/local/bin` which must be in your $PATH.
 
 You are all set ! 🍰
 
@@ -47,7 +47,7 @@ variable.
 *Makes a folder dessert-ready.*
 
 ```bash
-./dessert-cli init
+dessert-cli init
 ```
 
 Checks if package.json exists.
@@ -57,21 +57,21 @@ Else asks for an `npm init`
 Adds to package.json:
 
 - an object dessert
-- the value "core_is" to this dessert object
+- the value "is_core" to this dessert object
 - the keyword "dessert" to the keywords property
 
 ```
 "dessert" : {
-  "core_is": ""
+  "is_core": ""
 }
 "keywords": ["dessert"]
 ```
 
-Creates a Dessert config file `dessert_config.yml`
+Creates a Dessert config file `dessert.yml`
 
 ```
 version: 1
-dessertToken: ""
+token: ""
 ```
 
 ### **login**
@@ -79,12 +79,12 @@ dessertToken: ""
 *Logs you into Dessert.*
 
 ```bash
-./dessert-cli login
+dessert-cli login
 ```
 
-Your Dessert credentials will be prompted.
+Your *Dessert credentials* will be prompted.
 
-Grabs your token and writes it to `dessert_config.yml` for future actions.
+Grabs your token and writes it to `dessert.yml` for future actions.
 
 ### **logout**
 
@@ -93,7 +93,7 @@ Grabs your token and writes it to `dessert_config.yml` for future actions.
 *Logs you out from the Dessert platform.*
 
 ```bash
-./dessert-cli logout
+dessert-cli logout
 ```
 
 ### **publish**
@@ -103,17 +103,25 @@ Grabs your token and writes it to `dessert_config.yml` for future actions.
 *Publishes your project to the Dessert plateform.*
 
 ```bash
-./dessert-cli publish
+dessert-cli publish
 ```
  
 You'll need to run `npm publish` afterwards.
 
 ### **replaces**
 
-*Adds the modules you are replacing to your package.json.*
+*Adds the modules you are replacing to the dessert object in your package.json.*
 
 ```bash
-./dessert-cli replaces moduleA moduleB ...
+dessert-cli replaces moduleA moduleB ...
+```
+
+### **recommend**
+
+*Recommends you modules to replace*
+
+```bash
+dessert-cli recommend moduleA
 ```
 
 ### **version**
@@ -121,5 +129,5 @@ You'll need to run `npm publish` afterwards.
 *Displays your `dessert-cli` version.*
 
 ```bash
-./dessert-cli version
+dessert-cli version
 ```
