@@ -1,6 +1,6 @@
 package cmd
 
-const currentVersionCLI = "dessert-cli v0.0"
+const currentVersionCLI = "dessert-cli v2.0"
 
 const (
 	logLoggingYouIn        = "logging you in..."
