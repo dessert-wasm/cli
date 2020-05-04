@@ -19,8 +19,8 @@ type LoginR struct {
 
 // LoginM : query for mutation `login`
 var LoginM = `
-mutation ($username: String!, $password: String!) {
-	login(username: $username, password: $password, remember: true) { id }
+mutation ($email: String!, $password: String!) {
+	login(email: $email, password: $password, remember: true) { id }
 }
 `
 
@@ -29,7 +29,7 @@ func login(client *graphql.Client, credentials prompt.LoginA) error {
 	req := graphql.NewRequest(LoginM)
 	ctx := context.Background()
 
-	req.Var("username", credentials.Username)
+	req.Var("email", credentials.Username)
 	req.Var("password", credentials.Password)
 
 	var respData LoginR

@@ -3,7 +3,6 @@ package cmd
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	"github.com/machinebox/graphql"
 	"github.com/spf13/cobra"
@@ -75,7 +74,7 @@ func recommend(args []string) error {
 	req.Var("dependencies", dependencies)
 
 	if err := client.Run(ctx, req, &respData); err != nil {
-		fmt.Println(err)
+		// fmt.Println(err)
 		return err
 	}
 
