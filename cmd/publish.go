@@ -20,8 +20,8 @@ type PublishR struct {
 
 // PublishM : query for mutation `mutatePublishModule`
 var PublishM = `
-mutation ($token: String!, $description: String!, $name: String!, $isCore: Boolean!) {
-	createModule(token: $token, isCore: $isCore, description: $description, name: $name, replacements: []) {
+mutation ($token: String!, $description: String!, $name: String!, $isCore: Boolean!, $replacements: [ModuleReplacementInput!]!) {
+	createModule(token: $token, isCore: $isCore, description: $description, name: $name, replacements: $replacements) {
 		id
 	}
 }
@@ -32,6 +32,7 @@ type Module struct {
 	name        string
 	description string
 	is_core     bool
+	replaces    []string
 }
 
 func checkPropertyString(module *Module, propName string) bool {
@@ -52,6 +53,7 @@ func getModuleData(sacJSON *sac.Sac) (Module, error) {
 	mod.name = sacJSON.GetString(JSONNameKey)
 	mod.description = sacJSON.GetString(JSONDescriptionKey)
 	mod.is_core = sacJSON.GetBool("dessert.is_core")
+	mod.replaces = sacJSON.GetStringSlice("dessert.replaces")
 
 	propArr := []string{JSONNameKey, JSONDescriptionKey, JSONIsCoreKey}
 
@@ -62,6 +64,10 @@ func getModuleData(sacJSON *sac.Sac) (Module, error) {
 	}
 
 	return mod, nil
+}
+
+type Replacement struct {
+	Name string `json:"name"`
 }
 
 func publish(client *graphql.Client, token string, mod Module) error {
@@ -75,8 +81,21 @@ func publish(client *graphql.Client, token string, mod Module) error {
 	req.Var(GQLDescriptionKey, mod.description)
 	req.Var(GQLIsCoreKey, mod.is_core)
 
+	rpl := []Replacement{}
+	// Loop
+	for i := 0; i < len(mod.replaces); i++ {
+		item := Replacement{Name: mod.replaces[i]}
+		rpl = append(rpl, item)
+	}
+
+	//data, err := json.Marshal(test)
+	// fmt.Println("Replacements", string(data), err)
+	req.Var("replacements", rpl)
+
+	// fmt.Println(req)
+
 	if err := client.Run(ctx, req, &respData); err != nil {
-		//fmt.Println(err)
+		// fmt.Println(err, respData)
 		return err
 	}
 	return nil
