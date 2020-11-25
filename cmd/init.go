@@ -70,7 +70,7 @@ func setCore(sacJSON *sac.Sac) error {
 		return errors.New(errPrompt)
 	}
 
-	isCore := (answers.Type == "core")
+	isCore := answers.Type == "core"
 	sacJSON.Set("dessert.is_core", isCore)
 
 	if err := sacJSON.WriteConfig(); err != nil {

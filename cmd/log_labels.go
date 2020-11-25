@@ -8,8 +8,7 @@ const (
 	logInSuccess           = "logged in"
 	logOutSuccess          = "logged out"
 	logPublishingToDessert = "publishing your work to the dessert platform"
-	logPublishingSucess    = "success, your work was published on dessert !"
-	//*logUseDessert            = "to use dessert, initialize your repository using either npm or yarn init"
+	logPublishingSuccess   = "success, your work was published on dessert !"
 	logMakingFolderDReady  = "making your folder dessert-ready"
 	logSuccessHappyDessert = "success, happy dessert !"
 	logTokenSaved          = "token saved to dessert.yml"
@@ -18,7 +17,6 @@ const (
 )
 
 const (
-	//*warnPackageJSON404   = "package.json not found"
 	warnDessertConfig404 = "dessert.yml not found"
 	warnPublishNPM       = "don't forget to npm publish !"
 )

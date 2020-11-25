@@ -27,8 +27,6 @@ func CreateRoot() *cobra.Command {
 		SilenceErrors: true,
 	}
 
-	// Logger TODO: move
-	// Logger.SetOutput(out)
 	Logger.SetFormatter(new(myFormatter))
 
 	// Sacs

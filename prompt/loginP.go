@@ -17,13 +17,13 @@ var loginQ = []*survey.Question{
 	},
 }
 
-// LoginA is the structure used for login Questions
+// LoginA is the structure used for login questions
 type LoginA struct {
 	Username string
 	Password string
 }
 
-// LoginPrompt for Dessert
+// LoginPrompt is a custom login prompt for Dessert
 func LoginPrompt(loginA *LoginA) error {
 	return survey.Ask(loginQ, loginA, survey.WithIcons(customPrompt))
 }

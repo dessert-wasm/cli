@@ -10,7 +10,7 @@ import (
 	"github.com/machinebox/graphql"
 )
 
-// GraphQLURI has a default value, might be overriden by the environment
+// GraphQLURI default value points here, but can be overridden by the environment
 var GraphQLURI = "https://prod.dessert.vodka/"
 
 // CookieJar can't fail, but you never know !

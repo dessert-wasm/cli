@@ -113,7 +113,7 @@ func createPublishCmd(sacYML *sac.Sac, sacJSON *sac.Sac) *cobra.Command {
 			Logger.Info(logPublishingToDessert)
 		},
 		PostRun: func(cmd *cobra.Command, args []string) {
-			Logger.Info(logPublishingSucess)
+			Logger.Info(logPublishingSuccess)
 			Logger.Warn(warnPublishNPM)
 		},
 

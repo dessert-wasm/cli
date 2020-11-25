@@ -24,7 +24,6 @@ mutation ($email: String!, $password: String!) {
 }
 `
 
-// TODO: save username to config file for future login?
 func login(client *graphql.Client, credentials prompt.LoginA) error {
 	req := graphql.NewRequest(LoginM)
 	ctx := context.Background()
