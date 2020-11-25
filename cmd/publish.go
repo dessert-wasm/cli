@@ -46,7 +46,7 @@ func checkPropertyString(module *Module, propName string) bool {
 	return s.IsValid()
 }
 
-// TODO: we may need other variables from package.json in the future
+// write here all the variables needed from package.json
 func getModuleData(sacJSON *sac.Sac) (Module, error) {
 	var mod Module
 

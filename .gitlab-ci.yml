@@ -7,8 +7,6 @@ stages:
 
 before_script:
   # Install our linter
-  # TODO: Cache it
-  #- apk add --update git --no-cache
   - GO111MODULE=off go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
 
 build-dessert-ci:
