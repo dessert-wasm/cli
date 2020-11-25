@@ -81,17 +81,19 @@ func publish(client *graphql.Client, token string, mod Module) error {
 	req.Var(GQLDescriptionKey, mod.description)
 	req.Var(GQLIsCoreKey, mod.is_core)
 
-	var rpl []Replacement
+	// Do not be fooled by Goland trying to change this line
+	// x := []Struct{} !== var x []Struct
+	rpl := []Replacement{}
+
 	// loop on replacements
 	for i := 0; i < len(mod.replaces); i++ {
 		item := Replacement{Name: mod.replaces[i]}
 		rpl = append(rpl, item)
 	}
 
-	req.Var("replacements", rpl)
+	req.Var(GQLReplacements, rpl)
 
 	if err := client.Run(ctx, req, &respData); err != nil {
-		// fmt.Println(err, respData)
 		return err
 	}
 	return nil

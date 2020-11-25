@@ -13,6 +13,7 @@ const (
 	GQLNameKey        = "name"
 	GQLDescriptionKey = "description"
 	GQLDependencies = "dependencies"
+	GQLReplacements = "replacements"
 )
 
 // YML keys
