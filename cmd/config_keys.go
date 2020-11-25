@@ -12,6 +12,7 @@ const (
 	GQLIsCoreKey      = "isCore"
 	GQLNameKey        = "name"
 	GQLDescriptionKey = "description"
+	GQLDependencies = "dependencies"
 )
 
 // YML keys

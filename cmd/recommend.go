@@ -71,7 +71,7 @@ func recommend(args []string) error {
 	Logger.Infof("Finding replacements for %v...", args)
 
 	dependencies := fillDeps(args)
-	req.Var("dependencies", dependencies)
+	req.Var(GQLDependencies, dependencies)
 
 	if err := client.Run(ctx, req, &respData); err != nil {
 		// fmt.Println(err)

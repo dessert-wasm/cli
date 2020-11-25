@@ -53,7 +53,7 @@ func createLoginCmd(sacYML *sac.Sac) *cobra.Command {
 			Logger.Info(logInSuccess)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			if err := sacYML.ReadConfig("dessert.yml"); err != nil {
+			if err := sacYML.ReadConfig(dessertYML); err != nil {
 				return errors.New(warnDessertConfig404)
 			}
 			client := initClient()

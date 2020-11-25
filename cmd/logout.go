@@ -33,7 +33,7 @@ func createLogoutCmd(sacYML *sac.Sac) *cobra.Command {
 			Logger.Info(logOutSuccess)
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
-			if err := sacYML.ReadConfig("dessert.yml"); err != nil {
+			if err := sacYML.ReadConfig(dessertYML); err != nil {
 				return err
 			}
 			if err := logout(sacYML); err != nil {

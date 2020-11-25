@@ -81,18 +81,14 @@ func publish(client *graphql.Client, token string, mod Module) error {
 	req.Var(GQLDescriptionKey, mod.description)
 	req.Var(GQLIsCoreKey, mod.is_core)
 
-	rpl := []Replacement{}
-	// Loop
+	var rpl []Replacement
+	// loop on replacements
 	for i := 0; i < len(mod.replaces); i++ {
 		item := Replacement{Name: mod.replaces[i]}
 		rpl = append(rpl, item)
 	}
 
-	//data, err := json.Marshal(test)
-	// fmt.Println("Replacements", string(data), err)
 	req.Var("replacements", rpl)
-
-	// fmt.Println(req)
 
 	if err := client.Run(ctx, req, &respData); err != nil {
 		// fmt.Println(err, respData)
@@ -118,10 +114,10 @@ func createPublishCmd(sacYML *sac.Sac, sacJSON *sac.Sac) *cobra.Command {
 		},
 
 		RunE: func(cmd *cobra.Command, args []string) error {
-			if err := sacYML.ReadConfig("dessert.yml"); err != nil {
+			if err := sacYML.ReadConfig(dessertYML); err != nil {
 				return errors.New(errDessertYMLNeeded)
 			}
-			if err := sacJSON.ReadConfig("package.json"); err != nil {
+			if err := sacJSON.ReadConfig(dessertJSON); err != nil {
 				return errors.New(errPackageJSONNeeded)
 			}
 
@@ -130,7 +126,7 @@ func createPublishCmd(sacYML *sac.Sac, sacJSON *sac.Sac) *cobra.Command {
 				return err
 			}
 
-			token := sacYML.GetString("token")
+			token := sacYML.GetString(YMLTokenKey)
 			if token == "" {
 				return errors.New(errGettingToken)
 			}

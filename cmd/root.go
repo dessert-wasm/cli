@@ -32,12 +32,12 @@ func CreateRoot() *cobra.Command {
 	// Sacs
 	sacYML := sac.New()
 	sacYML.ChangeFS(Fs)
-	sacYML.Path = "dessert.yml"
+	sacYML.Path = dessertYML
 	sacYML.ConfigType = sac.YAML
 
 	sacJSON := sac.New()
 	sacJSON.ChangeFS(Fs)
-	sacJSON.Path = "package.json"
+	sacJSON.Path = dessertJSON
 	sacJSON.ConfigType = sac.JSON
 
 	rootCmd.AddCommand(createVersionCmd())

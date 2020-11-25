@@ -29,6 +29,5 @@ func getToken(client *graphql.Client) (token string, err error) {
 		return "", err
 	}
 
-	// TODO: better testing, some edge cases here
 	return respData.Token, nil
 }
