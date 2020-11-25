@@ -29,6 +29,4 @@ const (
 	JSONIsCoreKey      = "is_core"
 	JSONNameKey        = "name"
 	JSONDescriptionKey = "description"
-	JSONTokenKey       = "token"
-	JSONVersionKey     = "version"
 )
